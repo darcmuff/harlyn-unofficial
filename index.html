@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Harlyn Unofficial</title>
+<meta name="description" content="Unofficial fan guide: what's on, opening times, food, weather and tides.">
+<meta name="theme-color" content="#0e3b43">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root{--teal:#0e3b43;--teal2:#14525c;--sea:#2bb3a6;--sand:#f4ead5;--sand2:#e9d8b4;--coral:#ff7a5c;--ink:#14272b;--mut:#5d6f72;--card:#fff;--bg:#f7f2e7;--amber:#e8a317;--red:#d6453d;--ok:#1f9d6b}
+@media (prefers-color-scheme:dark){:root{--ink:#eef4f3;--mut:#9fb3b5;--card:#16343a;--bg:#0b2429;--sand:#21454c}}
+*{box-sizing:border-box}html,body{margin:0}
+body{font:17px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+header{background:var(--teal);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:22px;letter-spacing:.3px}header h1 span{color:var(--coral)}
+header .sub{font-size:13px;opacity:.8}
+main{max-width:640px;margin:0 auto;padding:14px}
+.card{background:var(--card);border-radius:16px;padding:14px 16px;margin:0 0 12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.8px;color:var(--mut);margin:18px 4px 8px}
+h3{margin:0 0 6px;font-size:18px}
+.mut{color:var(--mut)}.small{font-size:13px}
+.seg{display:flex;background:var(--sand);border-radius:12px;padding:4px;margin-bottom:12px}
+.seg button{flex:1;border:0;background:none;font:inherit;font-weight:600;padding:8px;border-radius:9px;color:var(--ink)}
+.seg button.on{background:var(--teal);color:#fff}
+.wx{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff}
+.wx .big{font-size:44px;font-weight:700;line-height:1}
+.row{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.gust{font-weight:700;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,.15)}
+.g-amber{background:var(--amber)!important;color:#111}.g-red{background:var(--red)!important;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600;background:var(--sand);color:var(--ink)}
+.chip.open{background:#d5f2e5;color:#0d5c3d}.chip.shut{background:#f6dcd8;color:#8a2a22}
+@media (prefers-color-scheme:dark){.chip.open{background:#1f5a44;color:#d5f2e5}.chip.shut{background:#5a2a26;color:#f6dcd8}}
+.ev{display:flex;gap:12px;padding:9px 0;border-top:1px solid rgba(127,127,127,.15)}.ev:first-child{border-top:0}
+.ev .t{min-width:52px;font-weight:700;color:var(--teal2)}
+@media (prefers-color-scheme:dark){.ev .t{color:var(--sea)}}
+.ev.past{opacity:.45}.ev.next{background:rgba(255,122,92,.12);margin:0 -10px;padding:9px 10px;border-radius:10px}
+.tag{font-size:11px;font-weight:700;background:var(--coral);color:#fff;border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.hero{background:linear-gradient(135deg,var(--coral),#ff9f6b);color:#fff}
+.hero .lbl{font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.9}
+.hero h3{font-size:24px;margin:4px 0}
+table{width:100%;border-collapse:collapse}td{padding:8px 0;border-top:1px solid rgba(127,127,127,.15);vertical-align:top}tr:first-child td{border-top:0}
+td:last-child{text-align:right}
+.btn{display:block;text-align:center;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;padding:13px;border-radius:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;border-top:1px solid rgba(127,127,127,.2);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+nav button{flex:1;border:0;background:none;font:inherit;font-size:12px;padding:8px 0 10px;color:var(--mut)}
+nav button b{display:block;font-size:22px;line-height:1.2}
+nav button.on{color:var(--coral);font-weight:700}
+.days{display:flex;overflow-x:auto;gap:8px}
+.day{min-width:78px;text-align:center;background:var(--sand);border-radius:12px;padding:8px 4px;font-size:14px}
+.day .e{font-size:24px}
+svg text{fill:var(--mut);font-size:10px}
+footer{text-align:center;font-size:12px;color:var(--mut);padding:10px 20px 20px}
+.warn{background:#fff4d6;color:#6b5000;border-radius:10px;padding:8px 10px;font-size:13px}
+@media (prefers-color-scheme:dark){.warn{background:#4a3d12;color:#ffe9a8}}
+</style>
+</head>
+<body>
+<header><h1>Harlyn <span>Unofficial</span></h1><div class="sub" id="hdr"></div></header>
+<main id="app"></main>
+<footer>Unofficial fan guide, not affiliated with Harlyn Sands. Check times at reception.<br>Weather &amp; tide data by <a href="https://open-meteo.com/" style="color:inherit">Open-Meteo.com</a> (CC BY 4.0). <span id="upd"></span></footer>
+<nav id="nav">
+<button data-tab="today"><b>☀︎</b>Today</button>
+<button data-tab="week"><b>🗓</b>Week</button>
+<button data-tab="weather"><b>🌊</b>Weather</button>
+<button data-tab="info"><b>ℹ︎</b>Info</button>
+</nav>
+<script src="data.js"></script>
+<script>
+const D = HARLYN, TZ = 'Europe/London';
+const OFFICIAL = 'https://www.harlynsands.co.uk/';
+const DAYS = ['sun','mon','tue','wed','thu','fri','sat'];
+const DAYNAME = {sun:'Sunday',mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday',fri:'Friday',sat:'Saturday'};
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// ---- London time helpers ----
+function london(d = new Date()) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {timeZone:TZ, year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hourCycle:'h23'}).formatToParts(d).map(x => [x.type, x.value]));
+  const date = `${p.year}-${p.month}-${p.day}`;
+  return {date, mins: +p.hour * 60 + +p.minute, hm: `${p.hour}:${p.minute}`};
+}
+const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const dow = iso => DAYS[new Date(iso + 'T12:00:00Z').getUTCDay()];
+const nice = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'short', timeZone:'UTC'});
+const toMin = hm => { const [h, m] = hm.split(':'); return +h * 60 + +m; };
+
+// ---- Opening status ----
+function status(v, now) {
+  if (v.closedSeason) return {cls:'shut', txt:'Closed out of season'};
+  if (!v.daily) return {cls:'', txt:'Check at reception'};
+  for (const [a, b] of v.daily) {
+    if (!a) return {cls:'', txt: b === 'late' ? 'Check at reception · till late' : 'Check at reception'};
+    const s = toMin(a);
+    if (now < s) continue;
+    if (b === 'late') return {cls:'open', txt:'Open till late'};
+    if (!b) return {cls:'open', txt:'Open · closing time: check at reception'};
+    const e = toMin(b);
+    if (now < e) return {cls:'open', txt: e - now <= 60 ? `Open · closes in ${e - now} min` : `Open till ${b}`};
+  }
+  const nxt = v.daily.find(([a]) => a && toMin(a) > now);
+  return {cls:'shut', txt: nxt ? `Closed · opens ${nxt[0]}` : 'Closed now'};
+}
+const hoursText = v => v.closedSeason ? 'Closed out of season' : !v.daily ? 'Check at reception'
+  : v.daily.map(([a, b]) => `${a || 'Check at reception'}–${b === 'late' ? 'late' : (b || '?')}`).join(', ');
+
+// ---- Events ----
+function eventsFor(iso) {
+  const ev = D.events.filter(e => e.date === iso);
+  return ev.sort((a, b) => (a.time || '00:00').localeCompare(b.time || '00:00'));
+}
+function evList(list, iso, now) {
+  if (!list.length) return `<div class="mut">Nothing listed. ${esc(D.midweekNote || 'Ask at reception.')}</div>`;
+  const today = iso === london().date;
+  let nextDone = false;
+  return list.map(e => {
+    let cls = '';
+    if (today && e.time) { const m = toMin(e.time); if (m + 30 < now) cls = 'past'; else if (!nextDone) { cls = 'next'; nextDone = true; } }
+    return `<div class="ev ${cls}"><div class="t">${esc(e.time || 'Any time')}</div><div><b>${esc(e.title)}</b>${e.headline ? '<span class="tag">HEADLINER</span>' : ''}${cls === 'next' ? '<span class="tag" style="background:var(--sea)">NEXT</span>' : ''}
+      ${e.who ? `<div class="small mut">with ${esc(e.who)}</div>` : ''}${e.note ? `<div class="small mut">${esc(e.note)}</div>` : ''}</div></div>`;
+  }).join('');
+}
+const foodFor = iso => (D.food[dow(iso)] || []);
+
+// ---- Weather / tides (cached) ----
+const WX_URL = `https://api.open-meteo.com/v1/forecast?latitude=${D.location.lat}&longitude=${D.location.lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_gusts_10m_max,sunrise,sunset&wind_speed_unit=mph&timezone=Europe/London`;
+const SEA_URL = `https://marine-api.open-meteo.com/v1/marine?latitude=${D.location.lat}&longitude=${D.location.lon}&hourly=sea_level_height_msl,wave_height,wave_period,sea_surface_temperature&timezone=Europe/London&forecast_days=7`;
+let WX = load('hu_wx'), SEA = load('hu_sea');
+function load(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } }
+async function getJSON(url, key) {
+  try { const r = await fetch(url); if (!r.ok) throw 0; const j = await r.json(); j._at = Date.now(); localStorage.setItem(key, JSON.stringify(j)); return j; }
+  catch { return null; }
+}
+async function refresh() {
+  const [w, s] = await Promise.all([getJSON(WX_URL, 'hu_wx'), getJSON(SEA_URL, 'hu_sea')]);
+  if (w) WX = w; if (s) SEA = s; render();
+}
+const WMO = c => c === 0 ? ['☀️','Clear'] : c <= 2 ? ['🌤️','Partly cloudy'] : c === 3 ? ['☁️','Cloudy'] : c <= 48 ? ['🌫️','Fog'] : c <= 57 ? ['🌦️','Drizzle'] : c <= 67 ? ['🌧️','Rain'] : c <= 77 ? ['🌨️','Snow'] : c <= 82 ? ['🌦️','Showers'] : ['⛈️','Thunder'];
+const gustCls = g => g > 60 ? 'g-red' : g > 50 ? 'g-amber' : '';
+const compass = d => ['N','NE','E','SE','S','SW','W','NW'][Math.round(d / 45) % 8];
+function tides() {
+  if (!SEA) return [];
+  const t = SEA.hourly.time, h = SEA.hourly.sea_level_height_msl, out = [];
+  for (let i = 1; i < h.length - 1; i++) {
+    if (h[i] == null || h[i-1] == null || h[i+1] == null) continue;
+    const hi = h[i] > h[i-1] && h[i] >= h[i+1], lo = h[i] < h[i-1] && h[i] <= h[i+1];
+    if (!hi && !lo) continue;
+    // parabolic refine for sub-hour time
+    const den = h[i-1] - 2*h[i] + h[i+1], off = den ? 0.5 * (h[i-1] - h[i+1]) / den : 0;
+    const base = new Date(t[i] + ':00Z').getTime() + off * 3600e3, d = new Date(base).toISOString();
+    out.push({type: hi ? 'High' : 'Low', date: d.slice(0, 10), hm: d.slice(11, 16), h: h[i]});
+  }
+  return out;
+}
+function nowHourIdx(arr) { const L = london(); const key = `${L.date}T${L.hm.slice(0,2)}:00`; const i = arr.indexOf(key); return i < 0 ? 0 : i; }
+const ago = at => { if (!at) return ''; const m = Math.round((Date.now() - at) / 60000); return m < 2 ? 'just now' : m < 60 ? `${m} min ago` : `${Math.round(m/60)} h ago`; };
+
+function wxCard(iso) {
+  if (!WX) return `<div class="card wx">Weather loading… (needs signal the first time)</div>`;
+  const L = london();
+  if (iso === L.date) {
+    const c = WX.current, [e, t] = WMO(c.weather_code), i = nowHourIdx(WX.hourly.time);
+    const rain = WX.hourly.precipitation_probability.slice(i, i + 4);
+    return `<div class="card wx"><div class="row"><div><div class="big">${Math.round(c.temperature_2m)}°</div><div>${e} ${t} · feels ${Math.round(c.apparent_temperature)}°</div></div>
+      <div style="text-align:right"><div>Wind ${Math.round(c.wind_speed_10m)} mph ${compass(c.wind_direction_10m)}</div><div style="margin-top:6px"><span class="gust ${gustCls(c.wind_gusts_10m)}">Gusts ${Math.round(c.wind_gusts_10m)} mph</span></div></div></div>
+      <div class="small" style="margin-top:10px;opacity:.85">Rain chance next hours: ${rain.map(r => r + '%').join(' · ')} · updated ${ago(WX._at)}</div></div>`;
+  }
+  const k = WX.daily.time.indexOf(iso); if (k < 0) return '';
+  const [e, t] = WMO(WX.daily.weather_code[k]), g = WX.daily.wind_gusts_10m_max[k];
+  return `<div class="card wx"><div class="row"><div><div class="big">${Math.round(WX.daily.temperature_2m_max[k])}°</div><div>${e} ${t} · low ${Math.round(WX.daily.temperature_2m_min[k])}°</div></div>
+    <div><span class="gust ${gustCls(g)}">Gusts to ${Math.round(g)} mph</span></div></div></div>`;
+}
+function tideLine(iso) {
+  const list = tides().filter(x => x.date === iso);
+  if (!list.length) return SEA ? '' : '<div class="small mut">Tides loading…</div>';
+  const L = london(); const nowKey = L.hm;
+  return `<div class="card"><div class="row"><h3>Tides</h3><span class="small mut">modelled · not for navigation</span></div>
+    <div class="chips">${list.map(x => `<span class="chip" style="${iso === L.date && x.hm < nowKey ? 'opacity:.5' : ''}">${x.type === 'High' ? '⬆︎' : '⬇︎'} ${x.type} ${x.hm}</span>`).join('')}</div></div>`;
+}
+
+// ---- Screens ----
+let tab = (location.hash || '#today').slice(1), dayOff = 0;
+function dayScreen() {
+  const L = london(), iso = addDays(L.date, dayOff), now = dayOff ? -1 : L.mins;
+  const ev = eventsFor(iso), dt = D.daytime[dow(iso)] || [];
+  const headliner = ev.find(e => e.headline);
+  const venues = Object.values(D.openingTimes);
+  return `<div class="seg"><button data-day="0" class="${dayOff ? '' : 'on'}">Today</button><button data-day="1" class="${dayOff ? 'on' : ''}">Tomorrow</button></div>
+  <div class="mut small" style="margin:0 4px 8px">${nice(iso)}</div>
+  ${wxCard(iso)}${tideLine(iso)}
+  ${headliner ? `<div class="card hero"><div class="lbl">${dayOff ? 'Tomorrow night' : 'Tonight'} · ${esc(headliner.time)}</div><h3>${esc(headliner.title)}</h3><div class="small">${esc(D.venuesNote)}</div></div>` : ''}
+  ${dayOff ? '' : `<h2>Open now · ${L.hm}</h2><div class="card"><div class="chips">${venues.map(v => { const s = status(v, L.mins); return `<span class="chip ${s.cls}">${esc(v.label)}: ${esc(s.txt)}</span>`; }).join('')}</div></div>`}
+  <h2>Food at JR's</h2><div class="card">${foodFor(iso).length ? foodFor(iso).map(f => `<div>🍽️ ${esc(f)}</div>`).join('') : `<div class="mut">Regular menu. Ask at JR's for today's specials.</div>`}<div class="small mut" style="margin-top:4px">${esc(D.openingTimes.jrs.note || '')}</div></div>
+  <h2>What's on</h2><div class="card">${evList(ev, iso, now)}</div>
+  ${dt.length && !ev.some(e => dt.some(d => e.time && e.time === d.time)) ? `<h2>Daytime</h2><div class="card">${evList(dt.map(x => ({...x})), 'x', -1)}</div>` : ''}`;
+}
+function weekScreen() {
+  const L = london(); let html = '';
+  const rest = [...new Set(D.events.map(e => e.date))].filter(d => d > addDays(L.date, 1) && d <= addDays(L.date, 7)).sort();
+  html += `<h2>Tomorrow · ${nice(addDays(L.date, 1))}</h2><div class="card">${evList(eventsFor(addDays(L.date, 1)), '', -1)}</div>`;
+  html += `<h2>Rest of the week</h2>`;
+  html += rest.length ? rest.map(d => `<div class="card"><h3>${nice(d)}</h3>${foodFor(d).map(f => `<div class="small">🍽️ ${esc(f)}</div>`).join('')}${evList(eventsFor(d), d, -1)}</div>`).join('')
+    : `<div class="card mut">Next week's guide isn't in yet. Check at reception.</div>`;
+  html += `<h2>Coming up</h2>` + (D.comingUp.length ? D.comingUp.map(c => `<div class="card"><div class="small mut">${esc(c.when)}</div><h3>${esc(c.title)}</h3>${c.note ? `<div class="small mut">${esc(c.note)}</div>` : ''}</div>`).join('') : `<div class="card mut">Nothing announced yet.</div>`);
+  html += `<p class="small mut" style="margin:4px">${esc(D.midweekNote)}</p>`;
+  return html;
+}
+function weatherScreen() {
+  if (!WX) return `<div class="card">Weather loading… (needs signal the first time)</div>`;
+  const i = nowHourIdx(WX.hourly.time), H = WX.hourly;
+  const N = 24, sp = H.wind_speed_10m.slice(i, i + N), gu = H.wind_gusts_10m.slice(i, i + N), tm = H.time.slice(i, i + N);
+  const mx = Math.max(60, ...gu) * 1.1, W = 340, Ht = 150, bw = W / N;
+  const y = v => Ht - 18 - v / mx * (Ht - 28);
+  let svg = `<svg viewBox="0 0 ${W} ${Ht}" width="100%">`;
+  [50, 60].forEach(l => svg += `<line x1="0" x2="${W}" y1="${y(l)}" y2="${y(l)}" stroke="${l === 50 ? 'var(--amber)' : 'var(--red)'}" stroke-dasharray="3 3"/><text x="2" y="${y(l) - 2}">${l}</text>`);
+  gu.forEach((g, k) => { svg += `<rect x="${k*bw+1}" y="${y(g)}" width="${bw-2}" height="${y(0)-y(g)}" rx="2" fill="${g > 60 ? 'var(--red)' : g > 50 ? 'var(--amber)' : 'rgba(255,122,92,.45)'}"/><rect x="${k*bw+3}" y="${y(sp[k])}" width="${bw-6}" height="${y(0)-y(sp[k])}" rx="2" fill="var(--sea)"/>`;
+    if (k % 3 === 0) svg += `<text x="${k*bw+bw/2}" y="${Ht-4}" text-anchor="middle">${tm[k].slice(11,13)}</text>`; });
+  svg += '</svg>';
+  const days = WX.daily.time.map((d, k) => { const [e] = WMO(WX.daily.weather_code[k]), g = WX.daily.wind_gusts_10m_max[k];
+    return `<div class="day"><div>${k ? new Date(d+'T12:00Z').toLocaleDateString('en-GB',{weekday:'short',timeZone:'UTC'}) : 'Today'}</div><div class="e">${e}</div><div><b>${Math.round(WX.daily.temperature_2m_max[k])}°</b> <span class="mut">${Math.round(WX.daily.temperature_2m_min[k])}°</span></div><div class="small"><span class="gust ${gustCls(g)}" style="background:transparent">💨${Math.round(g)}</span></div></div>`; }).join('');
+  let tideSvg = '', tl = '', waves = '';
+  if (SEA) {
+    const S = SEA.hourly, j = Math.max(0, S.time.indexOf(`${london().date}T00:00`)), n = 72;
+    const hh = S.sea_level_height_msl.slice(j, j + n).map(v => v ?? 0), lo = Math.min(...hh), hi = Math.max(...hh), TW = 340, TH = 120;
+    const ty = v => TH - 16 - (v - lo) / ((hi - lo) || 1) * (TH - 30);
+    const pts = hh.map((v, k) => `${k / (n - 1) * TW},${ty(v)}`).join(' ');
+    const nowX = (nowHourIdx(S.time) - j + london().mins % 60 / 60) / (n - 1) * TW;
+    tideSvg = `<svg viewBox="0 0 ${TW} ${TH}" width="100%"><polygon points="0,${TH-16} ${pts} ${TW},${TH-16}" fill="rgba(43,179,166,.25)"/><polyline points="${pts}" fill="none" stroke="var(--sea)" stroke-width="2"/>
+      ${[0,1,2].map(d => `<line x1="${d*24/(n-1)*TW}" x2="${d*24/(n-1)*TW}" y1="0" y2="${TH-16}" stroke="rgba(127,127,127,.3)"/><text x="${d*24/(n-1)*TW+3}" y="${TH-4}">${nice(addDays(london().date,d)).split(' ')[0]}</text>`).join('')}
+      <line x1="${nowX}" x2="${nowX}" y1="0" y2="${TH-16}" stroke="var(--coral)" stroke-width="2"/></svg>`;
+    const L = london();
+    tl = [0,1,2].map(d => { const iso = addDays(L.date, d); return `<tr><td><b>${nice(iso).split(' ')[0].slice(0,3)} ${nice(iso).split(' ')[1]}</b></td><td>${tides().filter(x => x.date === iso).map(x => `${x.type === 'High' ? '⬆︎' : '⬇︎'} ${x.hm}`).join(' &nbsp; ')}</td></tr>`; }).join('');
+    const k = nowHourIdx(S.time);
+    waves = `<div class="row small"><span>🌊 Waves ${S.wave_height[k] ?? '–'} m · ${S.wave_period[k] ?? '–'} s</span><span>🌡️ Sea ${S.sea_surface_temperature[k] != null ? Math.round(S.sea_surface_temperature[k]) + '°' : '–'}</span></div>`;
+  }
+  return `${wxCard(london().date)}
+  <h2>Wind &amp; gusts, next 24 h (mph)</h2><div class="card">${svg}<div class="small mut"><span style="color:var(--sea)">■</span> wind &nbsp; <span style="color:var(--coral)">■</span> gusts &nbsp; amber over 50, red over 60</div></div>
+  <h2>7 days</h2><div class="card"><div class="days">${days}</div></div>
+  <h2>Tides, 3 days</h2><div class="card">${SEA ? tideSvg + `<table>${tl}</table>` + waves : 'Tides loading…'}<div class="warn" style="margin-top:10px">⚠️ Modelled tide times (about 5 km resolution). <b>Not for navigation.</b> Fine for "when's high tide?", not for boating or fishing safety.</div></div>
+  <p class="small mut" style="margin:4px">Updated ${ago(WX._at)}${navigator.onLine ? '' : ' · offline, showing saved data'}</p>`;
+}
+function infoScreen() {
+  const L = london(), days = ['mon','tue','wed','thu','fri','sat','sun'];
+  return `<h2>Opening times</h2><div class="card"><table>${Object.values(D.openingTimes).map(v => { const s = status(v, L.mins);
+    return `<tr><td><b>${esc(v.label)}</b><div class="small mut">${esc(v.note || '')}</div></td><td>${esc(hoursText(v))}<div class="small"><span class="chip ${s.cls}" style="padding:2px 8px;font-size:12px">${esc(s.txt)}</span></div></td></tr>`; }).join('')}</table></div>
+  <h2>Food at JR's by day</h2><div class="card"><table>${days.map(d => `<tr><td><b>${DAYNAME[d]}</b></td><td>${(D.food[d] || []).length ? D.food[d].map(esc).join('<br>') : '<span class="mut">Regular menu</span>'}</td></tr>`).join('')}</table></div>
+  <h2>Booking</h2><div class="card"><p style="margin-top:0">Pool sessions, activities, character visits, carvery and breaks are booked through the official Harlyn Sands app or at reception.</p><a class="btn" href="${OFFICIAL}" target="_blank" rel="noopener">Open the official site / app ↗</a>
+    ${D.extras && D.extras.characterVisits ? `<p class="small mut">${esc(D.extras.characterVisits)}</p>` : ''}</div>
+  <h2>Clubhouse rules</h2><div class="card small">${D.rules.map(r => `<div>• ${esc(r)}</div>`).join('')}</div>
+  <h2>About</h2><div class="card small mut">A fan-made guide typed in by hand from the printed weekly guide (week commencing ${nice(D.guideWeekCommencing)}). Not affiliated with Harlyn Sands. Times can change, so check at reception. No tracking, no sign-in.<br><br>On your phone: Share → Add to Home Screen.</div>`;
+}
+function render() {
+  if (!['today','week','weather','info'].includes(tab)) tab = 'today';
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
+  document.getElementById('app').innerHTML = ({today: dayScreen, week: weekScreen, weather: weatherScreen, info: infoScreen})[tab]();
+  document.getElementById('hdr').textContent = nice(london().date) + ' · unofficial fan guide';
+  document.getElementById('upd').textContent = `Guide data updated ${D.lastUpdated}.`;
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tab]'); if (t) { tab = t.dataset.tab; location.hash = tab; window.scrollTo(0, 0); render(); }
+  const d = e.target.closest('[data-day]'); if (d) { dayOff = +d.dataset.day; render(); }
+});
+window.addEventListener('hashchange', () => { tab = location.hash.slice(1); render(); });
+render(); refresh(); setInterval(render, 60000);
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
