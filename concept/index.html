@@ -1,0 +1,185 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b6e74"><title>Harlyn Sands · concept</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="../icon-192.png">
+<style>
+:root{--bg:#f7f1e6;--card:#fff;--ink:#12302f;--mut:#5b6b69;--sea:#0b6e74;--sea2:#14a3a8;--sand:#f2d9a6;--coral:#ff6b57;--ok:#1f9d55;--shut:#b23b2e;--line:#e8dfcf;--sh:0 6px 20px rgba(18,48,47,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#0c1a1c;--card:#132a2d;--ink:#eef6f4;--mut:#9fb6b3;--sea:#3cc6c9;--sea2:#1d8a8f;--sand:#3a3222;--line:#22403f;--ok:#4ade80;--shut:#ff8a7a;--sh:none}}
+:root.dark{--bg:#0c1a1c;--card:#132a2d;--ink:#eef6f4;--mut:#9fb6b3;--sea:#3cc6c9;--sea2:#1d8a8f;--sand:#3a3222;--line:#22403f;--ok:#4ade80;--shut:#ff8a7a;--sh:none}
+:root.light{--bg:#f7f1e6;--card:#fff;--ink:#12302f;--mut:#5b6b69;--sea:#0b6e74;--sea2:#14a3a8;--sand:#f2d9a6;--line:#e8dfcf;--ok:#1f9d55;--shut:#b23b2e;--sh:0 6px 20px rgba(18,48,47,.08)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:17px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:calc(10px + env(safe-area-inset-top)) 18px 8px}
+.wm{font-weight:800;font-size:22px;letter-spacing:-.5px}.wm span{color:var(--coral)}
+.badge{font-size:11px;font-weight:700;background:var(--sand);color:var(--ink);padding:4px 8px;border-radius:99px}
+main{padding:4px 16px;max-width:560px;margin:auto}
+.scr{display:none;animation:in .28s ease}.scr.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2{font-size:26px;margin:10px 2px 12px;letter-spacing:-.5px}h3{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:22px 4px 8px}
+.card{background:var(--card);border-radius:20px;padding:16px;margin:0 0 12px;box-shadow:var(--sh);border:1px solid var(--line)}
+.hero{background:linear-gradient(135deg,var(--sea),#0a4f6b 60%,#ff6b57 140%);color:#fff;border:0;position:relative;overflow:hidden}
+.hero .k{font-size:13px;opacity:.85;font-weight:700;text-transform:uppercase;letter-spacing:.08em}.hero .big{font-size:28px;font-weight:800;line-height:1.15;margin:6px 0}
+.hero:after{content:"";position:absolute;right:-30px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.08)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid .card{margin:0}
+.lbl{font-size:13px;color:var(--mut);font-weight:600}.val{font-size:24px;font-weight:800}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}
+.chip{text-decoration:none;color:var(--ink);flex:none;border-radius:99px;padding:8px 12px;font-size:14px;font-weight:700;background:var(--card);border:1px solid var(--line);white-space:nowrap}
+.chip i{font-style:normal;display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--mut)}
+.chip.open i{background:var(--ok);box-shadow:0 0 0 0 var(--ok);animation:pulse 2s infinite}.chip.shut i{background:var(--shut)}
+@keyframes pulse{70%{box-shadow:0 0 0 7px transparent}}
+button,.btn{font:inherit;font-weight:700;border:0;border-radius:14px;padding:13px 16px;background:var(--sea);color:#fff;min-height:48px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:transform .12s}
+button:active,.btn:active,.tile:active,.card.tap:active{transform:scale(.96)}
+.ghost{background:transparent;color:var(--sea);border:2px solid var(--sea)}.coral{background:var(--coral)}
+.ev{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);align-items:flex-start}.ev:first-child{border:0}
+.ev .t{font-weight:800;min-width:54px;color:var(--sea)}.ev.past{opacity:.45}.ev .b{flex:1}
+.ev.next .t{color:var(--coral)}
+.tag{font-size:11px;font-weight:800;border-radius:6px;padding:2px 6px;margin-left:6px;background:var(--coral);color:#fff;vertical-align:2px}
+.demo{font-size:10px;font-weight:800;border-radius:6px;padding:2px 6px;background:var(--sand);color:var(--ink);letter-spacing:.04em;vertical-align:2px;margin-left:6px}
+.bell{background:none;color:var(--sea);border:1px solid var(--line);min-height:40px;padding:6px 10px;border-radius:12px;font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 6px;text-align:center;font-weight:700;font-size:14px;box-shadow:var(--sh);cursor:pointer;color:var(--ink)}.tile b{display:block;font-size:28px;margin-bottom:4px}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:9;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+nav button{flex:1;background:none;color:var(--mut);flex-direction:column;gap:0;font-size:12px;padding:6px 0;min-height:58px;border-radius:14px}
+nav button b{font-size:23px;line-height:1.1;transition:transform .2s}nav button.on{color:var(--sea);background:color-mix(in srgb,var(--sea) 12%,transparent)}nav button.on b{transform:translateY(-2px) scale(1.1)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px}.filters button{flex:none;background:var(--card);color:var(--ink);border:1px solid var(--line);min-height:42px;padding:8px 14px;border-radius:99px;font-size:15px}.filters button.on{background:var(--ink);color:var(--bg)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line)}.row:first-child{border:0}
+.mut{color:var(--mut)}.small{font-size:14px}.g-amber{color:#d98200}.g-red{color:var(--shut)}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.slots button{background:var(--card);color:var(--ink);border:2px solid var(--line);min-width:76px}.slots button.on{border-color:var(--sea);background:var(--sea);color:#fff}.slots button:disabled{opacity:.35;text-decoration:line-through}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:none;align-items:flex-end}.sheet.on{display:flex}
+.sheet>div{background:var(--bg);width:100%;max-width:560px;margin:auto auto 0;border-radius:24px 24px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto;animation:up .3s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes up{from{transform:translateY(100%)}}
+.ticket{background:#fff;color:#12302f;border-radius:20px;padding:18px;text-align:center;border:2px dashed var(--sea)}
+canvas.qr{width:180px;height:180px;image-rendering:pixelated}
+.map{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#bfe6d2 0%,#d9efc7 55%,#f2d9a6 78%,#7cc7d9 80%,#3a9fc0 100%)}
+.pin{position:absolute;transform:translate(-50%,-50%);background:var(--card);color:var(--ink);border-radius:14px;padding:5px 8px;font-size:12px;font-weight:700;box-shadow:0 3px 10px rgba(0,0,0,.2);border:0;min-height:0;white-space:nowrap}
+.map .sea{position:absolute;bottom:6%;right:6%;color:#fff;font-weight:800;font-size:13px;opacity:.9}
+input,textarea,select{font:inherit;width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);margin:6px 0 12px}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,30px);opacity:0;background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:14px;font-weight:700;z-index:30;transition:.25s}.toast.on{opacity:1;transform:translate(-50%,0)}
+.wave{height:56px;width:100%}
+footer{font-size:12px;color:var(--mut);text-align:center;padding:18px 10px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><div class="wm">Harlyn<span>·</span>Sands</div><button class="badge" style="min-height:0;border:0" onclick="about()">Concept by Marc Duff · demo</button></header>
+<main>
+<section class="scr on" id="today"></section>
+<section class="scr" id="whatson"></section>
+<section class="scr" id="book"></section>
+<section class="scr" id="park"></section>
+<section class="scr" id="me"></section>
+</main>
+<nav id="nav"></nav>
+<div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()"><div id="sheetIn"></div></div>
+<div class="toast" id="toast"></div>
+<script src="../data.js"></script><script src="demo.js"></script>
+<script>
+const D=HARLYN,TZ='Europe/London',DAYS=['sun','mon','tue','wed','thu','fri','sat'];
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const DM='<span class="demo">DEMO</span>';
+function london(d=new Date()){const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d).map(x=>[x.type,x.value]));return{date:`${p.year}-${p.month}-${p.day}`,mins:+p.hour*60+ +p.minute,hm:`${p.hour}:${p.minute}`}}
+const addDays=(iso,n)=>{const d=new Date(iso+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
+const dow=iso=>DAYS[new Date(iso+'T12:00:00Z').getUTCDay()];
+const nice=(iso,o={weekday:'long',day:'numeric',month:'short'})=>new Date(iso+'T12:00:00Z').toLocaleDateString('en-GB',{...o,timeZone:'UTC'});
+const toMin=hm=>{const[h,m]=hm.split(':');return +h*60+ +m};
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2200)}
+
+// ---------- Events: real guide week (23–29 Oct) reused as a weekly sample ----------
+const cat=t=>/tots|kids|disco|harstars|circus|sandcastle|crab|pebble|scavenger|balloon|krew|colouring/i.test(t)?'kids':/carvery|steak|food/i.test(t)?'food':/live act|90s|cover up|music|marley/i.test(t)?'music':'adults';
+const PATTERN={};D.events.forEach(e=>{const k=dow(e.date);(PATTERN[k]=PATTERN[k]||[]).push(e)});
+function eventsFor(iso){return (PATTERN[dow(iso)]||[]).map(e=>({...e,date:iso,cat:e.headline?'music':cat(e.title)})).sort((a,b)=>(a.time||'00').localeCompare(b.time||'00'))}
+
+// ---------- Opening status ----------
+function status(v,now){for(const[a,b]of v.hours){const s=toMin(a),e=toMin(b);if(now<s)continue;if(now<e)return{c:'open',t:e-now<=60?`closes in ${e-now} min`:`open till ${b}`}}const n=v.hours.find(([a])=>toMin(a)>now);return{c:'shut',t:n?`opens ${n[0]}`:'closed now'}}
+
+// ---------- Weather & tides ----------
+const WX_URL=`https://api.open-meteo.com/v1/forecast?latitude=${D.location.lat}&longitude=${D.location.lon}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,wind_gusts_10m_max,sunrise,sunset&wind_speed_unit=mph&timezone=Europe/London`;
+const SEA_URL=`https://marine-api.open-meteo.com/v1/marine?latitude=${D.location.lat}&longitude=${D.location.lon}&hourly=sea_level_height_msl,wave_height,sea_surface_temperature&timezone=Europe/London&forecast_days=7`;
+const load=k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}};
+let WX=load('hc_wx'),SEA=load('hc_sea');
+async function getJSON(u,k){try{const r=await fetch(u);if(!r.ok)throw 0;const j=await r.json();j._at=Date.now();localStorage.setItem(k,JSON.stringify(j));return j}catch{return null}}
+async function refresh(){const[w,s]=await Promise.all([getJSON(WX_URL,'hc_wx'),getJSON(SEA_URL,'hc_sea')]);if(w)WX=w;if(s)SEA=s;render()}
+const WMO=c=>c===0?['☀️','Clear']:c<=2?['🌤️','Partly cloudy']:c===3?['☁️','Cloudy']:c<=48?['🌫️','Fog']:c<=57?['🌦️','Drizzle']:c<=67?['🌧️','Rain']:c<=77?['🌨️','Snow']:c<=82?['🌦️','Showers']:['⛈️','Thunder'];
+const gc=g=>g>60?'g-red':g>50?'g-amber':'';
+const compass=d=>['N','NE','E','SE','S','SW','W','NW'][Math.round(d/45)%8];
+function tides(){if(!SEA)return[];const t=SEA.hourly.time,h=SEA.hourly.sea_level_height_msl,o=[];for(let i=1;i<h.length-1;i++){if(h[i]==null||h[i-1]==null||h[i+1]==null)continue;const hi=h[i]>h[i-1]&&h[i]>=h[i+1],lo=h[i]<h[i-1]&&h[i]<=h[i+1];if(!hi&&!lo)continue;const den=h[i-1]-2*h[i]+h[i+1],off=den?.5*(h[i-1]-h[i+1])/den:0;const d=new Date(new Date(t[i]+':00Z').getTime()+off*3600e3).toISOString();o.push({type:hi?'High':'Low',date:d.slice(0,10),hm:d.slice(11,16)})}return o}
+function nextTides(n=2){const L=london();return tides().filter(x=>x.date>L.date||(x.date===L.date&&toMin(x.hm)>=L.mins)).slice(0,n)}
+const hourIdx=a=>{const L=london();const i=a.indexOf(`${L.date}T${L.hm.slice(0,2)}:00`);return i<0?0:i};
+function seaTemp(){if(!SEA)return null;const i=hourIdx(SEA.hourly.time);return SEA.hourly.sea_surface_temperature[i]}
+function waveSVG(){if(!SEA)return'';const i0=hourIdx(SEA.hourly.time),h=SEA.hourly.sea_level_height_msl.slice(i0,i0+25).filter(x=>x!=null);if(h.length<3)return'';const mn=Math.min(...h),mx=Math.max(...h),W=300,H=56;const p=h.map((v,i)=>`${(i/(h.length-1)*W).toFixed(1)},${(H-4-(v-mn)/(mx-mn||1)*(H-12)).toFixed(1)}`).join(' ');return`<svg class="wave" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><polyline points="0,${H} ${p} ${W},${H}" fill="color-mix(in srgb,var(--sea2) 25%,transparent)" stroke="var(--sea2)" stroke-width="2.5"/><circle cx="0" cy="${p.split(' ')[0].split(',')[1]}" r="5" fill="var(--coral)"/></svg><div class="small mut" style="display:flex;justify-content:space-between"><span>Now</span><span>Next 24 h</span></div>`}
+
+// ---------- Reminders (.ics) ----------
+function ics(e){const dt=(e.date+'T'+(e.time||'10:00')).replace(/[-:]/g,'')+'00';const body=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Harlyn concept//EN','BEGIN:VEVENT',`UID:${Date.now()}@harlyn-concept`,`DTSTART;TZID=Europe/London:${dt}`,`SUMMARY:${e.title} (Harlyn Sands)`,'LOCATION:Harlyn Sands, PL28 8SQ','BEGIN:VALARM','TRIGGER:-PT15M','ACTION:DISPLAY',`DESCRIPTION:${e.title}`,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/calendar'}));a.download='harlyn-reminder.ics';a.click();toast('🔔 Added to your calendar, 15 min before')}
+let EVS={};
+
+// ---------- Screens ----------
+function evRow(e,now,today,state){let c='';if(today&&e.time){const m=toMin(e.time);if(m+30<now)c='past';else if(!state.n){c='next';state.n=1}}const id='e'+Math.random().toString(36).slice(2,8);EVS[id]=e;
+ return`<div class="ev ${c}"><div class="t">${esc(e.time||'All day')}</div><div class="b"><b>${esc(e.title)}</b>${e.headline?'<span class="tag">HEADLINER</span>':''}${c==='next'?'<span class="tag" style="background:var(--sea)">NEXT</span>':''}${e.who?`<div class="small mut">with ${esc(e.who)}</div>`:''}${e.note?`<div class="small mut">${esc(e.note)}</div>`:''}</div>${c!=='past'&&e.time?`<button class="bell" aria-label="Remind me" onclick="ics(EVS['${id}'])">🔔</button>`:''}</div>`}
+function today(){const state={};const L=london(),ev=eventsFor(L.date),head=ev.find(e=>e.headline),nxt=ev.find(e=>e.time&&toMin(e.time)+30>=L.mins);
+ let wx='<div class="mut small">Loading weather…</div>';if(WX){const c=WX.current,[ic,tx]=WMO(c.weather_code),i=hourIdx(WX.hourly.time),rain=Math.max(...WX.hourly.precipitation_probability.slice(i,i+4));wx=`<div class="lbl">Weather now</div><div class="val">${ic} ${Math.round(c.temperature_2m)}°</div><div class="small">${tx} · rain ${rain}%</div><div class="small ${gc(c.wind_gusts_10m)}"><b>Gusts ${Math.round(c.wind_gusts_10m)} mph</b> ${compass(c.wind_direction_10m)}</div>`}
+ const nt=nextTides(2),st=seaTemp();
+ const tide=nt.length?`<div class="lbl">Next tides</div>${nt.map(t=>`<div class="val" style="font-size:20px">${t.type==='High'?'🌊':'🏖️'} ${t.type} ${t.hm}</div>`).join('')}<div class="small mut">${st!=null?`Sea ${st.toFixed(0)}°C`:''}</div>`:'<div class="mut small">Loading tides…</div>';
+ const hero=head?`<div class="k">Tonight's headline · ${esc(head.time)}</div><div class="big">${esc(head.title)}</div><div class="small" style="opacity:.9">Crow's Nest Club</div>`:nxt?`<div class="k">Up next · ${esc(nxt.time)}</div><div class="big">${esc(nxt.title)}</div>`:`<div class="k">${nice(L.date)}</div><div class="big">Welcome to Harlyn Sands</div><div class="small" style="opacity:.9">Beach's a short stroll away. ${nt[0]?`${nt[0].type} tide ${nt[0].hm}.`:''}</div>`;
+ const tgt=head||nxt;
+ $('#today').innerHTML=`<h2>${greet(L.mins)} 👋</h2>
+ <div class="card hero">${hero}${tgt?`<div style="display:flex;gap:8px;margin-top:12px;position:relative;z-index:1"><button class="coral" onclick="ics(EVS.hero)">🔔 Remind me</button><button class="ghost" style="color:#fff;border-color:#fff" onclick="go('whatson')">All of today</button></div>`:''}</div>
+ <h3>Open now</h3><div class="chips">${DEMO.venues.map(v=>{const s=status(v,L.mins);return`<button class="chip ${s.c}" onclick="go('park')" style="color:var(--ink)"><i></i>${v.e} ${esc(v.name.split(' ')[0]==='Park'?'Shop':v.name.replace(/ (café|pool).*/,''))} · ${s.t}</button>`}).join('')}</div><div class="small mut" style="margin:-2px 4px 4px">Hours are demo data ${DM}</div>
+ <div class="grid" style="margin-top:12px"><div class="card tap" onclick="go('park','wx')">${wx}</div><div class="card tap" onclick="go('park','wx')">${tide}</div></div>
+ <h3>What's for tea</h3><div class="card tap" onclick="openMenu()"><b>🍽️ ${esc(DEMO.food[dow(L.date)]||'See the menu')}</b>${/demo/.test(DEMO.food[dow(L.date)])?'':' '}<div class="small mut">Tap for menus · JRrrs & Jolly Fryer ${DM}</div></div>
+ <h3>Today · ${nice(L.date,{weekday:'long',day:'numeric',month:'long'})}</h3><div class="card">${ev.length?ev.map(e=>evRow(e,L.mins,1,state)).join(''):'<div class="mut">Nothing on the sheet today. Ask at reception.</div>'}</div>
+ <h3>Quick</h3><div class="tiles"><div class="tile" onclick="go('book','pool')"><b>🏊</b>Book Splash</div><div class="tile" onclick="go('book')"><b>🎟️</b>Activities</div><div class="tile" onclick="location.href='tel:01841520720'"><b>📞</b>Reception</div><div class="tile" onclick="go('me')"><b>🪪</b>Owner card</div><div class="tile" onclick="go('park','map')"><b>🗺️</b>Map</div><div class="tile" onclick="go('park','local')"><b>🏖️</b>Local area</div></div>`;
+ EVS.hero=tgt;}
+const greet=m=>m<720?'Morning':m<1080?'Afternoon':'Evening';
+let filt='all';
+function whatson(){const L=london();let h=`<h2>What's on</h2><div class="filters">${[['all','All'],['kids','👧 Kids'],['adults','🍻 Adults'],['music','🎸 Live music'],['food','🍽️ Food']].map(([k,t])=>`<button class="${filt===k?'on':''}" onclick="filt='${k}';render()">${t}</button>`).join('')}</div><div class="small mut" style="margin:0 4px 10px">Sample week from the park's Oct guide, repeated so the demo always has dates ${DM}</div>`;
+ for(let i=0;i<7;i++){const iso=addDays(L.date,i),ev=eventsFor(iso).filter(e=>filt==='all'||e.cat===filt),st={};h+=`<h3>${i===0?'Today':i===1?'Tomorrow':nice(iso)}</h3><div class="card">${ev.length?ev.map(e=>evRow(e,L.mins,i===0,st)).join(''):'<div class="mut small">Nothing in this category.</div>'}</div>`}
+ $('#whatson').innerHTML=h}
+// ---------- Booking ----------
+const taken=(id,s)=>((id+s).split('').reduce((a,c)=>a+c.charCodeAt(0),0)%4)===0;
+let pick={};
+function book(){$('#book').innerHTML=`<h2>Book</h2><div class="small mut" style="margin:0 4px 10px">Demo booking: picks a time and shows a ticket. Nothing is sent to the park ${DM}</div>
+ <div class="card" id="poolcard"><b style="font-size:20px">🏊 Super Splash pool</b><div class="small mut">${esc(DEMO.poolNote)} · 45 min sessions</div>${dayPicker('pool')}<div class="slots">${DEMO.poolSessions.map(s=>slot('pool',s)).join('')}</div><label class="small mut">Swimmers</label><select id="sw_pool"><option>2</option><option>1</option><option>3</option><option>4</option><option>5</option><option>6</option></select><button style="width:100%" onclick="confirmB('pool','Super Splash pool')">Book session</button></div>
+ ${DEMO.activities.map(a=>`<div class="card"><b style="font-size:20px">${a.emoji} ${esc(a.name)}</b><div class="small mut">${esc(a.age)} · ${esc(a.price)}${a.note?' · '+esc(a.note):''}</div><div class="slots">${a.slots.map(s=>slot(a.id,s)).join('')}</div><button style="width:100%" onclick="confirmB('${a.id}','${esc(a.name)}')">Book</button></div>`).join('')}
+ <div class="card tap" onclick="window.open('https://www.harlynsands.co.uk/','_blank')"><b>🏡 Book your next break</b><div class="small mut">Opens harlynsands.co.uk</div></div>
+ <h3>My bookings</h3><div class="card">${tix().length?tix().map((t,i)=>`<div class="row"><div><b>${esc(t.name)}</b><div class="small mut">${nice(t.day)} · ${t.time}</div></div><button class="ghost" onclick="showTicket(${i})">Ticket</button></div>`).join(''):'<div class="mut small">No bookings yet.</div>'}</div>`}
+let poolDay=0;
+function dayPicker(){const L=london();return`<div class="slots">${[0,1,2].map(i=>`<button class="${poolDay===i?'on':''}" onclick="poolDay=${i};pick.pool=null;render()">${i?nice(addDays(L.date,i),{weekday:'short'}):'Today'}</button>`).join('')}</div>`}
+function slot(id,s){const L=london(),past=id==='pool'&&poolDay===0&&toMin(s)<L.mins,t=taken(id+poolDay,s);return`<button ${past||t?'disabled':''} class="${pick[id]===s?'on':''}" onclick="pick['${id}']='${s}';render()">${s}${t&&!past?'<br><small>Full</small>':''}</button>`}
+const tix=()=>load('hc_tix')||[];
+function confirmB(id,name){if(!pick[id])return toast('Pick a time first');const L=london(),t=tix();t.unshift({id,name,time:pick[id],day:addDays(L.date,id==='pool'?poolDay:0),n:id==='pool'?$('#sw_pool').value:1,ref:'HS'+Math.random().toString(36).slice(2,7).toUpperCase()});localStorage.setItem('hc_tix',JSON.stringify(t));pick[id]=null;render();showTicket(0);confetti()}
+function showTicket(i){const t=tix()[i];sheet(`<div class="ticket"><div style="font-weight:800;color:#0b6e74">HARLYN·SANDS</div><h2 style="margin:6px 0">${esc(t.name)}</h2><div>${nice(t.day)} · <b>${t.time}</b>${t.id==='pool'?` · ${t.n} swimmers`:''}</div><canvas class="qr" id="tq" width="29" height="29"></canvas><div style="font-weight:800;letter-spacing:.15em">${t.ref}</div><div style="font-size:12px;color:#5b6b69;margin-top:6px">Demo ticket. Pattern only, not a real QR code.</div></div><button style="width:100%;margin-top:14px" onclick="closeSheet()">Done</button>`);fakeQR($('#tq'),t.ref)}
+function fakeQR(c,seed){const x=c.getContext('2d'),n=29;let s=[...seed].reduce((a,ch)=>(Math.imul(a,31)+ch.charCodeAt(0))>>>0,7);x.fillStyle='#fff';x.fillRect(0,0,n,n);x.fillStyle='#12302f';for(let i=0;i<n;i++)for(let j=0;j<n;j++){s=(Math.imul(s,1103515245)+12345)>>>0;if((s>>>16)&1)x.fillRect(i,j,1,1)}[[0,0],[n-7,0],[0,n-7]].forEach(([a,b])=>{x.fillStyle='#fff';x.fillRect(a-1<0?0:a-1,b-1<0?0:b-1,9,9);x.fillStyle='#12302f';x.fillRect(a,b,7,7);x.fillStyle='#fff';x.fillRect(a+1,b+1,5,5);x.fillStyle='#12302f';x.fillRect(a+2,b+2,3,3)})}
+function confetti(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;for(let i=0;i<28;i++){const d=document.createElement('div');d.textContent=['🎉','🌊','⭐','🐚'][i%4];d.style.cssText=`position:fixed;z-index:40;left:${Math.random()*100}vw;top:-30px;font-size:22px;transition:transform 1.4s cubic-bezier(.2,.7,.4,1),opacity 1.4s;pointer-events:none`;document.body.appendChild(d);requestAnimationFrame(()=>{d.style.transform=`translateY(${60+Math.random()*40}vh) rotate(${Math.random()*360}deg)`;d.style.opacity=0});setTimeout(()=>d.remove(),1500)}}
+// ---------- Park ----------
+function park(){const L=london();let wx='<div class="mut">Loading…</div>';if(WX){const dd=WX.daily;wx=dd.time.map((t,i)=>{const[ic]=WMO(dd.weather_code[i]);return`<div class="row"><b style="width:70px">${i?nice(t,{weekday:'short'}):'Today'}</b><span style="font-size:22px">${ic}</span><span>${Math.round(dd.temperature_2m_max[i])}° / <span class="mut">${Math.round(dd.temperature_2m_min[i])}°</span></span><span class="small ${gc(dd.wind_gusts_10m_max[i])}">💨 ${Math.round(dd.wind_gusts_10m_max[i])}</span></div>`}).join('')}
+ const td=tides().filter(x=>x.date>=L.date).slice(0,8);
+ $('#park').innerHTML=`<h2>Park</h2><div class="chips"><a class="chip" href="#map">🗺️ Map</a><a class="chip" href="#hours">🕒 Hours</a><a class="chip" href="#wx">🌦️ Weather</a><a class="chip" href="#calls">📞 Call</a><a class="chip" href="#local">🏖️ Local</a><a class="chip" href="#fb">💬 Feedback</a></div>
+ <h3 id="map">Park map ${DM}</h3><div class="card" style="padding:8px"><div class="map">${DEMO.venues.map(v=>`<button class="pin" style="left:${v.where[0]}%;top:${v.where[1]}%" onclick="toast('${esc(v.name)} · ${status(v,L.mins).t}')">${v.e} ${esc(v.short)}</button>`).join('')}<button class="pin" style="left:22%;top:34%;background:var(--coral);color:#fff">🏠 A2</button><div class="sea">Atlantic 🌊</div></div><div class="small mut" style="padding:6px">Illustration only. Positions are made up until we have the real site plan.</div></div>
+ <h3 id="hours">Opening hours ${DM}</h3><div class="card">${DEMO.venues.map(v=>{const s=status(v,L.mins);return`<div class="row"><div><b>${v.e} ${esc(v.name)}</b><div class="small mut">${v.hours.map(h=>h.join('–')).join(', ')}${v.note?' · '+esc(v.note):''}</div></div><span class="chip ${s.c}" style="font-size:12px"><i></i>${s.t}</span></div>`}).join('')}<button class="ghost" style="width:100%;margin-top:8px" onclick="openMenu()">🍽️ Menus</button></div>
+ <h3 id="wx">Weather, wind & tides</h3><div class="card">${wx}<div class="small mut">💨 = max gusts (mph). Amber over 50, red over 60.</div></div>
+ <div class="card"><b>Tide, next 24 hours</b>${waveSVG()}${td.map(t=>`<div class="row"><span>${t.type==='High'?'🌊':'🏖️'} <b>${t.type}</b></span><span>${nice(t.date,{weekday:'short'})} ${t.hm}</span></div>`).join('')}<div class="small mut" style="margin-top:6px">${seaTemp()!=null?`Sea temperature ${seaTemp().toFixed(1)}°C · `:''}Modelled tides, roughly right for the beach. <b>Not for navigation.</b> Data by <a href="https://open-meteo.com/" style="color:inherit">Open-Meteo.com</a></div></div>
+ <h3 id="calls">Tap to call</h3><div class="card">${CALLS.map(([l,t,n])=>`<a class="row" style="color:inherit;text-decoration:none" href="tel:${t}"><div><b>${l}</b>${n?`<div class="small mut">${n}</div>`:''}</div><span class="btn" style="min-height:40px;padding:8px 14px">📞 Call</span></a>`).join('')}<div class="small mut" style="margin-top:8px">Calling 999? Tell reception too. Site postcode <b>PL28 8SQ</b>.</div></div>
+ <h3 id="local">Local area</h3>${DEMO.local.map(x=>`<div class="card"><b>${x.e} ${x.t}</b><div class="small mut">${x.d}</div></div>`).join('')}
+ <h3 id="fb">Feedback ${DM}</h3><div class="card"><div style="font-size:34px;display:flex;justify-content:space-around" id="faces">${['😞','😐','🙂','😍'].map(f=>`<button class="bell" style="font-size:30px;border:0" onclick="document.querySelectorAll('#faces button').forEach(b=>b.style.opacity=.35);this.style.opacity=1">${f}</button>`).join('')}</div><textarea rows="3" placeholder="Tell the park what you think"></textarea><button style="width:100%" onclick="toast('Thanks! (Demo, nothing was sent)')">Send feedback</button></div>`}
+const CALLS=[['Reception','01841520720'],['Padstow Surgery','01841532346'],['Dentist','01208812450'],['St Merryn Vets','01841520647'],['Minor Injuries, Bodmin','01208251577','Bodmin, PL31 2QT'],['Royal Cornwall Hospital (A&E)','01872250000','Treliske, Truro, TR1 3LJ'],["Taxi · O'Neills",'07548195652'],['Taxi · Bob','07707859825'],['Emergency','999']];
+function openMenu(){sheet(`<h2>Menus ${DM}</h2>${Object.entries(DEMO.menu).map(([k,v])=>`<h3>${k}</h3><div class="card">${v.map(([a,b])=>`<div class="row"><span>${a}</span><b>${b}</b></div>`).join('')}</div>`).join('')}<div class="small mut">Prices and dishes are made up for the demo.</div><button style="width:100%;margin-top:10px" onclick="closeSheet()">Close</button>`)}
+// ---------- Owners ----------
+function me(){const qr=localStorage.getItem('hc_qr');$('#me').innerHTML=`<h2>Owners</h2>
+ <div class="card hero"><div class="k">Owner card</div><div class="big">Pitch A2</div><div class="small" style="opacity:.9">Your QR stays on this phone only.</div><div style="margin-top:12px;position:relative;z-index:1">${qr?`<button class="coral" onclick="showQR()">Show my QR</button>`:`<label class="btn coral">📷 Add my QR<input type="file" accept="image/*" hidden onchange="addQR(this)"></label>`}</div></div>
+ <h3>Notices ${DM}</h3>${DEMO.notices.map(n=>`<details class="card"><summary><b>📌 ${esc(n.title)}</b></summary><div class="small mut" style="margin-top:6px">${esc(n.body)}</div></details>`).join('')}
+ <h3>Owner info</h3><div class="card">${D.rules.slice(0,3).map(r=>`<div class="row small">${esc(r)}</div>`).join('')}<div class="row small">Tell reception before a contractor visits your pitch</div><div class="row small">Unplug your hook-up when the van's empty</div></div>
+ <h3>Settings</h3><div class="card"><div class="row"><b>Theme</b><select style="width:auto;margin:0" onchange="theme(this.value)"><option value="">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></div><div class="row"><b>Bigger text</b><input type="checkbox" style="width:28px;height:28px;margin:0" ${localStorage.hc_big?'checked':''} onchange="big(this.checked)"></div>${qr?`<div class="row"><b>Owner QR</b><button class="ghost" onclick="localStorage.removeItem('hc_qr');render();toast('Removed from this phone')">Remove</button></div>`:''}</div>
+ <footer>Concept by Marc Duff, owner at Harlyn Sands. Not an official app. Demo data is marked DEMO.</footer>`}
+function addQR(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{localStorage.setItem('hc_qr',r.result);render();showQR()}catch{toast('Image too big')}};r.readAsDataURL(f)}
+function showQR(){sheet(`<div style="background:#fff;border-radius:20px;padding:16px;text-align:center"><img src="${localStorage.getItem('hc_qr')}" style="max-width:100%;max-height:60vh"></div><p class="small mut" style="text-align:center">Turn your screen brightness up to scan.</p><button style="width:100%" onclick="closeSheet()">Done</button>`)}
+function theme(v){document.documentElement.className=v;localStorage.hc_theme=v}
+function big(v){document.body.style.fontSize=v?'20px':'';v?localStorage.hc_big=1:localStorage.removeItem('hc_big')}
+function about(){sheet(`<h2>About this concept</h2><p>A proof of concept by Marc Duff, an owner at Harlyn Sands, to show what a new park app could feel like. It isn't affiliated with or endorsed by the park.</p><p>Weather and tides are live (Open-Meteo). Event names, venue names and phone numbers come from the park's printed guide. Anything marked ${DM} is made up for the demo, and no form sends anything.</p><button style="width:100%" onclick="closeSheet()">Got it</button>`)}
+function sheet(h){$('#sheetIn').innerHTML=h;$('#sheet').classList.add('on')}function closeSheet(){$('#sheet').classList.remove('on')}
+// ---------- Nav ----------
+const TABS=[['today','🏠','Today'],['whatson','🎉',"What's On"],['book','🎟️','Book'],['park','🌴','Park'],['me','🪪','Owners']];
+let cur='today';
+function go(t,anchor){cur=t;document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id===t));render();if(anchor)setTimeout(()=>document.getElementById(anchor)?.scrollIntoView({behavior:'smooth'}),30);else scrollTo(0,0)}
+function render(){$('#nav').innerHTML=TABS.map(([k,e,l])=>`<button class="${cur===k?'on':''}" onclick="go('${k}')" aria-label="${l}"><b>${e}</b>${l}</button>`).join('');({today,whatson,book,park,me})[cur]()}
+if(localStorage.hc_theme)theme(localStorage.hc_theme);if(localStorage.hc_big)big(1);
+render();refresh();setInterval(render,60000);
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+</script></body></html>
